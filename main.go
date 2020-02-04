@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/linkedin/goavro/v2"
+
 	//"github.com/Shopify/sarama"
 	//"os"
 	//"os/signal"
@@ -97,12 +99,12 @@ func main() {
 	//  ]
 	//}`)
 
-	schema, _ := client.Versions("telecom_italia_data-value")
+	schema, _ := client.GetSchemaBySubject("customer_details", 2)
 	//schema, _ := client.GetConfig("com.pickme.events.Key")
 
 	fmt.Println(schema)
 	//fmt.Println(bo)
-	//codec,_:= goavro.NewCodec(schema.Schema)
+	codec, _ := goavro.NewCodec(schema.Schema)
 	//val := `{"key":2}`
 	//valByteArr := []byte(val)
 	//native,_,_:= codec.NativeFromTextual(valByteArr)
